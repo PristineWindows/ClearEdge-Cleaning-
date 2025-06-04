@@ -1,0 +1,126 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pristine Windows</title>
+  <link href="https://fonts.googleapis.com/css2?family=Futura:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Futura', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: white;
+      color: #333;
+    }
+    header {
+      background: #00c0f3;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+    header img {
+      height: 60px;
+    }
+    main {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .box {
+      background: #f9f9f9;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+      margin-bottom: 40px;
+    }
+    h2 {
+      color: #00c0f3;
+      border-bottom: 2px solid #00c0f3;
+      padding-bottom: 5px;
+      margin-bottom: 15px;
+    }
+    .service-item {
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+    form {
+      background: #f9f9f9;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    }
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-family: 'Futura', sans-serif;
+    }
+    button {
+      background: #00c0f3;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background: #00a2d1;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="/mnt/data/file-A9vtMZ3CQ3FWgNP9ePcgHN" alt="Pristine Windows Logo">
+    <div>
+      <h1>Pristine Windows</h1>
+      <p>pristine-windowcleaners@outlook.com</p>
+    </div>
+  </header>  
+  <main>
+    <section class="services box">
+      <h2>Our Services</h2>
+      <div class="service-item">Window Cleaning</div>
+      <div class="service-item">Conservatory Cleaning</div>
+      <div class="service-item">Door Cleaning</div>
+    </section>
+    <section class="coming-soon box">
+      <h2>Coming Soon</h2>
+      <div class="service-item">Pressure Washing</div>
+      <div class="service-item">Gutter Cleaning</div>
+    </section>
+
+    <section class="contact-form">
+      <h2>Contact Us</h2>
+      <p>Please fill out the form and we will get back to you with a quote.</p>
+      <form action="https://formsubmit.co/pristine-windowcleaners@outlook.com" method="POST">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="telephone">Telephone</label>
+        <input type="tel" id="telephone" name="telephone" pattern="^\d{11}" required>
+
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+
+        <input type="hidden" name="_subject" value="New Quote Request from Pristine Windows!">
+        <input type="hidden" name="_captcha" value="false">
+
+        <button type="submit">Send Message</button>
+      </form>
+    </section>
+  </main>
+</body>
+</html>
