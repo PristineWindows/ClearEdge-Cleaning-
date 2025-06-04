@@ -1,9 +1,8 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Pristine Windows</title>
   <link href="https://fonts.googleapis.com/css2?family=Futura:wght@400;700&display=swap" rel="stylesheet">
   <style>
@@ -14,24 +13,38 @@
       background: white;
       color: #333;
     }
+
     header {
-      background: #00c0f3;
-      color: white;
+      background: white;
       padding: 20px;
       text-align: center;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 15px;
+      border-bottom: 2px solid #00c0f3;
     }
+
     header img {
       height: 60px;
     }
+
+    header h1 {
+      color: #00c0f3;
+      margin: 0;
+    }
+
+    header p {
+      color: #555;
+      margin: 0;
+    }
+
     main {
       padding: 40px 20px;
       max-width: 1000px;
       margin: auto;
     }
+
     .box {
       background: #f9f9f9;
       padding: 25px;
@@ -39,22 +52,26 @@
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
       margin-bottom: 40px;
     }
+
     h2 {
       color: #00c0f3;
       border-bottom: 2px solid #00c0f3;
       padding-bottom: 5px;
       margin-bottom: 15px;
     }
+
     .service-item {
       margin-bottom: 10px;
       font-weight: bold;
     }
+
     form {
       background: #f9f9f9;
       padding: 30px;
       border-radius: 10px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
     }
+
     input, textarea {
       width: 100%;
       padding: 12px;
@@ -63,6 +80,7 @@
       border-radius: 6px;
       font-family: 'Futura', sans-serif;
     }
+
     button {
       background: #00c0f3;
       color: white;
@@ -73,6 +91,7 @@
       cursor: pointer;
       transition: background 0.3s ease;
     }
+
     button:hover {
       background: #00a2d1;
     }
@@ -80,12 +99,13 @@
 </head>
 <body>
   <header>
-    <img src="logo1.png" alt="Pristine Windows Logo">
+    <img src="logo.png" alt="Pristine Windows Logo">
     <div>
       <h1>Pristine Windows</h1>
       <p>pristine-windowcleaners@outlook.com</p>
     </div>
-  </header>  
+  </header>
+
   <main>
     <section class="services box">
       <h2>Our Services</h2>
@@ -93,6 +113,7 @@
       <div class="service-item">Conservatory Cleaning</div>
       <div class="service-item">Door Cleaning</div>
     </section>
+
     <section class="coming-soon box">
       <h2>Coming Soon</h2>
       <div class="service-item">Pressure Washing</div>
