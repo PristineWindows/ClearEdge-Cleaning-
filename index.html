@@ -102,6 +102,10 @@
       margin-bottom: 5px;
       display: block;
     }
+
+    .hidden {
+      display: none;
+    }
   </style>
 </head>
 <body>
@@ -132,9 +136,9 @@
       <p>Please fill out the form and we will get back to you with a quote.</p>
       <form action="https://formsubmit.co/pristine-windowcleaners@outlook.com" method="POST">
 
-        <!-- Dropdowns -->
+        <!-- House or Commercial -->
         <label for="houseType">I have a</label>
-        <select id="houseType" name="House Type" required>
+        <select id="houseType" name="Property Type" required onchange="toggleCommercialFields(this)">
           <option value="" disabled selected>Type of house</option>
           <option value="Detached">Detached</option>
           <option value="Semi-detached">Semi-detached</option>
@@ -143,33 +147,60 @@
           <option value="Flat / Apartment">Flat / Apartment</option>
           <option value="Cottage">Cottage</option>
           <option value="Other">Other</option>
+          <option value="Commercial Property">Commercial Property</option>
         </select>
 
-        <label for="bedrooms">My house has</label>
-        <select id="bedrooms" name="Number of Bedrooms" required>
-          <option value="" disabled selected>Number of bedrooms</option>
-          <option value="1 Bedroom">1 Bedroom</option>
-          <option value="2 Bedrooms">2 Bedrooms</option>
-          <option value="3 Bedrooms">3 Bedrooms</option>
-          <option value="4 Bedrooms">4 Bedrooms</option>
-          <option value="5 Bedrooms">5 Bedrooms</option>
-          <option value="6+ Bedrooms">6+ Bedrooms</option>
-        </select>
+        <!-- Commercial-Specific Fields -->
+        <div id="commercialFields" class="hidden">
+          <label for="businessType">Type of Commercial Property</label>
+          <select id="businessType" name="Commercial Property Type" required>
+            <option value="" disabled selected>Select one</option>
+            <option value="Shop">Shop</option>
+            <option value="Office Building">Office Building</option>
+            <option value="Restaurant">Restaurant</option>
+            <option value="Warehouse">Warehouse</option>
+            <option value="Other">Other</option>
+          </select>
 
-        <label for="conservatory">My house</label>
-        <select id="conservatory" name="Conservatory" required>
-          <option value="" disabled selected>Conservatory?</option>
-          <option value="Does have a conservatory">Does have a conservatory</option>
-          <option value="Does not have a conservatory">Does not have a conservatory</option>
-        </select>
+          <label for="floors">Number of Floors</label>
+          <select id="floors" name="Floors" required>
+            <option value="" disabled selected>Choose one</option>
+            <option value="1 Floor">1 Floor</option>
+            <option value="2 Floors">2 Floors</option>
+            <option value="3 Floors">3 Floors</option>
+            <option value="4+ Floors">4+ Floors</option>
+          </select>
+        </div>
 
-        <label for="extension">My house has</label>
-        <select id="extension" name="Extension" required>
-          <option value="" disabled selected>Extension?</option>
-          <option value="Does have an extension">Does have an extension</option>
-          <option value="Does not have an extension">Does not have an extension</option>
-        </select>
+        <!-- Residential Fields -->
+        <div id="residentialFields">
+          <label for="bedrooms">My house has</label>
+          <select id="bedrooms" name="Number of Bedrooms" required>
+            <option value="" disabled selected>Number of bedrooms</option>
+            <option value="1 Bedroom">1 Bedroom</option>
+            <option value="2 Bedrooms">2 Bedrooms</option>
+            <option value="3 Bedrooms">3 Bedrooms</option>
+            <option value="4 Bedrooms">4 Bedrooms</option>
+            <option value="5 Bedrooms">5 Bedrooms</option>
+            <option value="6+ Bedrooms">6+ Bedrooms</option>
+          </select>
 
+          <label for="conservatory">My house</label>
+          <select id="conservatory" name="Conservatory" required>
+            <option value="" disabled selected>Conservatory?</option>
+            <option value="Does have a conservatory">Does have a conservatory</option>
+            <option value="Does not have a conservatory">Does not have a conservatory</option>
+          </select>
+
+          <label for="extension">My house has</label>
+          <select id="extension" name="Extension" required>
+            <option value="" disabled selected>Extension?</option>
+            <option value="Does have an extension">Does have an extension</option>
+            <option value="Does not have an extension">Does not have an extension</option>
+          </select>
+        </div>
+
+        <!-- Frequency -->
         <label for="frequency">I would like them cleaned</label>
         <small>Every 4 weeks at discounted price</small>
         <select id="frequency" name="Cleaning Frequency" required>
@@ -178,7 +209,7 @@
           <option value="Every 8 weeks">Every 8 weeks</option>
         </select>
 
-        <!-- Basic Info -->
+        <!-- Contact Info -->
         <label for="name">Name</label>
         <input type="text" id="name" name="name" required>
 
@@ -191,7 +222,7 @@
         <label for="message">Message</label>
         <textarea id="message" name="message" rows="5" required></textarea>
 
-        <!-- Hidden Fields -->
+        <!-- Hidden Submit Options -->
         <input type="hidden" name="_subject" value="New Quote Request from Pristine Windows!">
         <input type="hidden" name="_captcha" value="false">
 
@@ -199,5 +230,13 @@
       </form>
     </section>
   </main>
+
+  <script>
+    function toggleCommercialFields(select) {
+      const isCommercial = select.value === "Commercial Property";
+      document.getElementById("commercialFields").classList.toggle("hidden", !isCommercial);
+      document.getElementById("residentialFields").classList.toggle("hidden", isCommercial);
+    }
+  </script>
 </body>
 </html>
