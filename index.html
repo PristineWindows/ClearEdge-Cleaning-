@@ -295,20 +295,53 @@
     }
 
     function addHiddenInputs() {
-      const form = document.querySelector('form');
-      [...form.querySelectorAll('input.dynamic')].forEach((el) => el.remove());
+  const form = document.querySelector('form');
+  [...form.querySelectorAll('input.dynamic')].forEach((el) => el.remove());
 
-      for (const [key, value] of Object.entries(answers)) {
-        const input = document.createElement('input');
-        input.type = 'hidden';
-        input.name = key;
-        input.value = value;
-        input.className = 'dynamic';
-        form.appendChild(input);
-      }
+  for (const [key, value] of Object.entries(answers)) {
+    const input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = key;
+    input.value = value;
+    input.className = 'dynamic';
+    form.appendChild(input);
+  }
 
-      return true;
-    }
+  // Calculate prices again here to store in hidden inputs
+  const windowsStr = answers['WindowsCount'] || '0';
+  const windows = windowsStr === '10+' ? 10 : parseInt(windowsStr);
+
+  const door = answers['Door'] === 'Yes' ? 1 : 0;
+  const conservatory = answers['Conservatory'] === 'Yes' ? 1 : 0;
+
+  const frequency = answers['CleanFrequency'] || '';
+
+  let base = windows * 0.85 + door * 1;
+  let initialClean = base + conservatory * 10 + 10;
+  let ongoing = base + conservatory * 5;
+
+  if (frequency === 'Every 8 Weeks') {
+    ongoing += 5;
+    initialClean += 5;
+  }
+
+  // Create hidden inputs for the prices
+  let inputInitial = document.createElement('input');
+  inputInitial.type = 'hidden';
+  inputInitial.name = 'FirstCleanPrice';
+  inputInitial.value = `£${initialClean.toFixed(2)}`;
+  inputInitial.className = 'dynamic';
+  form.appendChild(inputInitial);
+
+  let inputOngoing = document.createElement('input');
+  inputOngoing.type = 'hidden';
+  inputOngoing.name = 'OngoingPrice';
+  inputOngoing.value = frequency === 'One-off' ? 'N/A' : `£${ongoing.toFixed(2)} (${frequency})`;
+  inputOngoing.className = 'dynamic';
+  form.appendChild(inputOngoing);
+
+  return true;
+}
 
     function restartForm() {
       Object.keys(answers).forEach((k) => delete answers[k]);
