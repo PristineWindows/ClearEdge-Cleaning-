@@ -1,353 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Pristine Windows</title>
-  <link href="https://fonts.googleapis.com/css2?family=Futura:wght@400;700&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ClearEdge Cleaning Quote</title>
   <style>
     body {
-      font-family: 'Futura', sans-serif;
       margin: 0;
-      padding: 0;
-      background: white;
-      color: #333;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f4f4;
     }
-
-    header {
-      background: white;
+    .container {
+      display: flex;
+    }
+    .sidebar {
+      background-color: #2d2f36;
+      color: #fff;
       padding: 20px;
-      text-align: center;
+      width: 250px;
+      height: 100vh;
+    }
+    .sidebar h1 {
+      font-size: 24px;
+      margin: 0;
+    }
+    .sidebar .services {
+      margin-top: 30px;
+    }
+    .sidebar .services h3 {
+      margin-bottom: 10px;
+    }
+    .sidebar .services ul {
+      list-style: none;
+      padding: 0;
+    }
+    .sidebar .services li {
+      margin: 10px 0;
+    }
+    .main {
+      flex-grow: 1;
+      padding: 40px;
+    }
+    .header {
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 15px;
-      border-bottom: 2px solid #00c0f3;
+      gap: 10px;
     }
-
-    header img {
-      height: 60px;
+    .logo {
+      width: 50px;
+      height: 50px;
+      background-image: url('YOUR_LOGO_URL_HERE');
+      background-size: contain;
+      background-repeat: no-repeat;
     }
-
-    header h1 {
-      color: #00c0f3;
-      margin: 0;
-    }
-
-    header p {
-      color: #555;
-      margin: 0;
-    }
-
-    main {
-      padding: 40px 20px;
-      max-width: 1000px;
-      margin: auto;
-    }
-
-    .box {
-      background: #f9f9f9;
-      padding: 25px;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-      margin-bottom: 40px;
-    }
-
-    h2 {
-      color: #00c0f3;
-      border-bottom: 2px solid #00c0f3;
-      padding-bottom: 5px;
-      margin-bottom: 15px;
-    }
-
-    .service-item {
-      margin-bottom: 10px;
-      font-weight: bold;
-    }
-
-    form {
-      background: #f9f9f9;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-    }
-
-    .option-button {
-      padding: 12px 20px;
-      margin: 10px 10px 10px 0;
-      background: #00c0f3;
-      color: white;
-      border-radius: 6px;
-      cursor: pointer;
-      display: inline-block;
-      user-select: none;
-      transition: background 0.3s ease;
-    }
-    .option-button:hover {
-      background: #00a2d1;
-    }
-
-    input,
-    textarea,
-    select {
-      width: 100%;
-      padding: 12px;
-      margin: 10px 0;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-family: 'Futura', sans-serif;
-      box-sizing: border-box;
-    }
-
-    button {
-      background: #00c0f3;
-      color: white;
-      border: none;
-      padding: 12px 24px;
-      border-radius: 6px;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background 0.3s ease;
-      margin-top: 10px;
-      margin-right: 10px;
-    }
-
-    button:hover {
-      background: #00a2d1;
-    }
-
-    small {
-      font-size: 12px;
-      color: #555;
-      margin-bottom: 5px;
-      display: block;
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    .step {
-      display: none;
-    }
-    .step.active {
-      display: block;
+    .title {
+      font-size: 28px;
+      color: #2d2f36;
     }
   </style>
 </head>
 <body>
-  <header>
-    <img src="logo.png" alt="Pristine Windows Logo" />
-    <div>
+  <div class="container">
+    <div class="sidebar">
       <h1>ClearEdge Cleaning</h1>
-      <p>pristine-windowcleaners@outlook.com</p>
+      <div class="services">
+        <h3>Services We Offer</h3>
+        <ul>
+          <li>Windows</li>
+          <li>Doors</li>
+          <li>Residential/Commercial</li>
+        </ul>
+      </div>
     </div>
-  </header>
-
-  <main>
-    <section class="services box">
-      <h2>Our Services</h2>
-      <div class="service-item">Window Cleaning</div>
-      <div class="service-item">Conservatory Cleaning</div>
-      <div class="service-item">Door Cleaning</div>
-    </section>
-
-    <section class="coming-soon box">
-      <h2>Coming Soon</h2>
-      <div class="service-item">Pressure Washing</div>
-      <div class="service-item">Gutter Cleaning</div>
-    </section>
-
-    <section class="Get an instant quote">
-      
-      <h2>Get an instant quote</h2>
-      
-    </section>
-    
-    <form action="https://formsubmit.co/pristine-windowcleaners@outlook.com" method="POST" onsubmit="return addHiddenInputs();">
-
-      <div class="step active" id="Property">
-        <h2>I have a</h2>
-        <div class="option-button" onclick="selectOption('Residential', 'HouseType')">Residential</div>
-        <div class="option-button" onclick="selectOption('Commercial', 'summary')">Commercial</div>
+    <div class="main">
+      <div class="header">
+        <div class="logo"></div>
+        <div class="title">Instant Quote</div>
       </div>
-
-      <div class="step" id="HouseType">
-        <h2>Type of House</h2>
-        <div class="option-button" onclick="selectOption('Detached', 'Conservatory')">Detached</div>
-        <div class="option-button" onclick="selectOption('Semi-Detached', 'Conservatory')">Semi-Detached</div>
-        <div class="option-button" onclick="selectOption('Terraced', 'Conservatory')">Terraced</div>
-        <div class="option-button" onclick="selectOption('Bungalow', 'Conservatory')">Bungalow</div>
-        <div class="option-button" onclick="selectOption('Flat', 'Conservatory')">Flat</div>
-      </div>
-
-      <div class="step" id="Conservatory">
-        <h2>Does your house have a conservatory?</h2>
-        <div class="option-button" onclick="selectOption('Yes', 'Door')">Yes</div>
-        <div class="option-button" onclick="selectOption('No', 'Door')">No</div>
-      </div>
-
-      <div class="step" id="Door">
-        <h2>Would you like the door cleaned?</h2>
-        <div class="option-button" onclick="selectOption('Yes', 'CleanFrequency')">Yes</div>
-        <div class="option-button" onclick="selectOption('No', 'CleanFrequency')">No</div>
-      </div>
-
-      <div class="step" id="CleanFrequency">
-        <h2>I would like them cleaned</h2>
-        <small>Every 4 weeks at discounted price</small>
-        <div class="option-button" onclick="selectOption('One-off', 'WindowsCount')">One-off</div>
-        <div class="option-button" onclick="selectOption('Every 4 Weeks', 'WindowsCount')">Every 4 Weeks</div>
-        <div class="option-button" onclick="selectOption('Every 8 Weeks', 'WindowsCount')">Every 8 Weeks</div>
-      </div>
-
-      <div class="step" id="WindowsCount">
-        <h2>Number of windows</h2>
-        <div class="option-button" onclick="selectOption('1', 'summary')">1</div>
-        <div class="option-button" onclick="selectOption('2', 'summary')">2</div>
-        <div class="option-button" onclick="selectOption('3', 'summary')">3</div>
-        <div class="option-button" onclick="selectOption('4', 'summary')">4</div>
-        <div class="option-button" onclick="selectOption('5', 'summary')">5</div>
-        <div class="option-button" onclick="selectOption('6', 'summary')">6</div>
-        <div class="option-button" onclick="selectOption('7', 'summary')">7</div>
-        <div class="option-button" onclick="selectOption('8', 'summary')">8</div>
-        <div class="option-button" onclick="selectOption('9', 'summary')">9</div>
-        <div class="option-button" onclick="selectOption('10+', 'summary')">10+</div>
-      </div>
-
-      <div class="step" id="summary">
-        <h2>Quote Summary</h2>
-        <div id="summaryBox"></div>
-        <button type="button" onclick="showContactForm()">Proceed to Contact Details</button>
-        <button type="button" class="restart-btn" onclick="restartForm()">Start Again</button>
-      </div>
-
-      <div class="step" id="contactInfo">
-        <h2>Contact Information</h2>
-        <input type="text" name="Name" placeholder="Name" required />
-        <input type="email" name="Email" placeholder="Email" required />
-        <input type="tel" name="Telephone" placeholder="Telephone (11 digits)" pattern="^\d{11}$" required />
-        <textarea name="Message" placeholder="Message" rows="5" required></textarea>
-        <input type="hidden" name="_subject" value="New Quote Request from Pristine Windows!" />
-        <input type="hidden" name="_captcha" value="false" />
-        <button type="submit">Send Message</button>
-      </div>
-    </form>
-  </main>
-
-  <script>
-    const answers = {};
-
-    function selectOption(value, nextStepId) {
-      const currentStep = document.querySelector('.step.active');
-      if (currentStep) answers[currentStep.id] = value;
-
-      document.querySelectorAll('.step').forEach((s) => s.classList.remove('active'));
-
-      if (nextStepId === 'summary') {
-        updateSummary();
-      }
-
-      document.getElementById(nextStepId).classList.add('active');
-    }
-
-    function updateSummary() {
-      const windowsStr = answers['WindowsCount'] || '0';
-      const windows = windowsStr === '10+' ? 10 : parseInt(windowsStr);
-
-      const door = answers['Door'] === 'Yes' ? 1 : 0;
-      const conservatory = answers['Conservatory'] === 'Yes' ? 1 : 0;
-
-      const frequency = answers['CleanFrequency'] || '';
-
-      // Base prices for windows and door
-      let base = windows * 0.85 + door * 1;
-
-      // Add conservatory charges
-      let initialClean = base + conservatory * 10 + 10; // +10 base cleaning fee
-      let ongoing = base + conservatory * 5; // conservatory adds 5 ongoing
-
-      if (frequency === 'Every 8 Weeks') {
-        ongoing += 5;
-        initialClean += 5;
-      }
-
-      let summaryHTML = `<h3>First Clean Price: £${initialClean.toFixed(2)}</h3>`;
-
-      if (frequency !== 'One-off') {
-        summaryHTML += `<p>Ongoing Price: £${ongoing.toFixed(2)} (${frequency})</p>`;
-      }
-
-      summaryHTML += `<hr><strong>Your Selections:</strong><ul>`;
-
-      for (let [key, val] of Object.entries(answers)) {
-        summaryHTML += `<li><strong>${key.replace(/([A-Z])/g, ' $1')}:</strong> ${val}</li>`;
-      }
-
-      summaryHTML += `</ul>`;
-
-      document.getElementById('summaryBox').innerHTML = summaryHTML;
-    }
-
-    function showContactForm() {
-      document.querySelectorAll('.step').forEach((step) => step.classList.remove('active'));
-      document.getElementById('contactInfo').classList.add('active');
-    }
-
-    function addHiddenInputs() {
-  const form = document.querySelector('form');
-  [...form.querySelectorAll('input.dynamic')].forEach((el) => el.remove());
-
-  for (const [key, value] of Object.entries(answers)) {
-    const input = document.createElement('input');
-    input.type = 'hidden';
-    input.name = key;
-    input.value = value;
-    input.className = 'dynamic';
-    form.appendChild(input);
-  }
-
-  // Calculate prices again here to store in hidden inputs
-  const windowsStr = answers['WindowsCount'] || '0';
-  const windows = windowsStr === '10+' ? 10 : parseInt(windowsStr);
-
-  const door = answers['Door'] === 'Yes' ? 1 : 0;
-  const conservatory = answers['Conservatory'] === 'Yes' ? 1 : 0;
-
-  const frequency = answers['CleanFrequency'] || '';
-
-  let base = windows * 0.85 + door * 1;
-  let initialClean = base + conservatory * 10 + 10;
-  let ongoing = base + conservatory * 5;
-
-  if (frequency === 'Every 8 Weeks') {
-    ongoing += 5;
-    initialClean += 5;
-  }
-
-  // Create hidden inputs for the prices
-  let inputInitial = document.createElement('input');
-  inputInitial.type = 'hidden';
-  inputInitial.name = 'FirstCleanPrice';
-  inputInitial.value = `£${initialClean.toFixed(2)}`;
-  inputInitial.className = 'dynamic';
-  form.appendChild(inputInitial);
-
-  let inputOngoing = document.createElement('input');
-  inputOngoing.type = 'hidden';
-  inputOngoing.name = 'OngoingPrice';
-  inputOngoing.value = frequency === 'One-off' ? 'N/A' : `£${ongoing.toFixed(2)} (${frequency})`;
-  inputOngoing.className = 'dynamic';
-  form.appendChild(inputOngoing);
-
-  return true;
-}
-
-    function restartForm() {
-      Object.keys(answers).forEach((k) => delete answers[k]);
-      document.querySelectorAll('.step').forEach((step) => step.classList.remove('active'));
-      document.getElementById('Property').classList.add('active');
-    }
-  </script>
+      <!-- Main quote form and interaction code will go here -->
+    </div>
+  </div>
 </body>
 </html>
