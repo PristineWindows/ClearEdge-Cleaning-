@@ -1,84 +1,207 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ClearEdge Cleaning Quote</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
+      font-family: 'Open Sans', sans-serif;
+      background-color: #2d313c;
+      color: #ffffff;
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f4f4f4;
-    }
-    .container {
-      display: flex;
-    }
-    .sidebar {
-      background-color: #2d2f36;
-      color: #fff;
-      padding: 20px;
-      width: 250px;
-      height: 100vh;
-    }
-    .sidebar h1 {
-      font-size: 24px;
-      margin: 0;
-    }
-    .sidebar .services {
-      margin-top: 30px;
-    }
-    .sidebar .services h3 {
-      margin-bottom: 10px;
-    }
-    .sidebar .services ul {
-      list-style: none;
       padding: 0;
     }
-    .sidebar .services li {
-      margin: 10px 0;
+    .container {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 20px;
     }
-    .main {
-      flex-grow: 1;
-      padding: 40px;
+    h1, h2 {
+      color: #00b5e2;
+      text-align: center;
     }
-    .header {
+    .section {
+      background: #3a3f4b;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .buttons, .counter {
       display: flex;
       align-items: center;
       gap: 10px;
+      margin: 10px 0;
     }
-    .logo {
-      width: 50px;
-      height: 50px;
-      background-image: url('YOUR_LOGO_URL_HERE');
-      background-size: contain;
-      background-repeat: no-repeat;
+    button {
+      background-color: #00b5e2;
+      border: none;
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
     }
-    .title {
-      font-size: 28px;
-      color: #2d2f36;
+    button:hover {
+      background-color: #008bb8;
+    }
+    select, input[type="text"], input[type="number"] {
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      margin: 5px 0;
+      width: 100%;
+    }
+    .summary, .contact-form {
+      display: none;
+    }
+    .quote-box {
+      background-color: #ffffff10;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 20px;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="sidebar">
-      <h1>ClearEdge Cleaning</h1>
-      <div class="services">
-        <h3>Services We Offer</h3>
-        <ul>
-          <li>Windows</li>
-          <li>Doors</li>
-          <li>Residential/Commercial</li>
-        </ul>
-      </div>
+    <h1>ClearEdge Cleaning</h1>
+
+    <div class="section" id="start">
+      <h2>Select Property Type</h2>
+      <button onclick="selectType('bungalow')">Bungalow</button>
+      <button onclick="selectType('semi')">Semi-Detached</button>
+      <button onclick="selectType('terraced')">Terraced</button>
+      <button onclick="selectType('detached')">Detached</button>
     </div>
-    <div class="main">
-      <div class="header">
-        <div class="logo"></div>
-        <div class="title">Instant Quote</div>
+
+    <div class="section" id="window-selection" style="display:none;">
+      <div id="story-selection" style="display:none">
+        <h2>How many stories?</h2>
+        <div class="counter">
+          <button onclick="changeCount('stories', -1)">-</button>
+          <span id="stories">1</span>
+          <button onclick="changeCount('stories', 1)">+</button>
+        </div>
       </div>
-      <!-- Main quote form and interaction code will go here -->
+      <h2>Windows</h2>
+      <div class="counter">Small Windows: <button onclick="changeCount('small', -1)">-</button><span id="small">0</span><button onclick="changeCount('small', 1)">+</button></div>
+      <div class="counter">Medium Windows: <button onclick="changeCount('medium', -1)">-</button><span id="medium">0</span><button onclick="changeCount('medium', 1)">+</button></div>
+      <div class="counter">Large Windows: <button onclick="changeCount('large', -1)">-</button><span id="large">0</span><button onclick="changeCount('large', 1)">+</button></div>
+      <div class="counter">Velux Windows: <button onclick="changeCount('velux', -1)">-</button><span id="velux">0</span><button onclick="changeCount('velux', 1)">+</button></div>
+      <div class="counter">Doors: <button onclick="changeCount('doors', -1)">-</button><span id="doors">0</span><button onclick="changeCount('doors', 1)">+</button></div>
+      <h2>Conservatory Cleaning?</h2>
+      <button onclick="toggleConservatory(true)">Yes</button>
+      <button onclick="toggleConservatory(false)">No</button>
+      <h2>Cleaning Frequency</h2>
+      <button onclick="setFrequency('one-off')">One Off</button>
+      <button onclick="setFrequency('4-week')">Every 4 Weeks</button>
+      <button onclick="setFrequency('8-week')">Every 8 Weeks</button>
+      <button onclick="calculateQuote()">Get Quote</button>
+    </div>
+
+    <div class="section summary" id="summary">
+      <h2>Quote Summary</h2>
+      <div class="quote-box" id="quoteText"></div>
+      <button onclick="showContactForm()">Continue to Contact Form</button>
+      <button onclick="resetForm()">Start Again</button>
+    </div>
+
+    <div class="section contact-form" id="contact">
+      <h2>Contact Us</h2>
+      <input type="text" placeholder="Name" />
+      <input type="text" placeholder="Email" />
+      <input type="text" placeholder="Phone Number" />
+      <button>Submit</button>
     </div>
   </div>
+
+  <script>
+    const prices = {
+      small: 0.85,
+      medium: 0.95,
+      large: 1.05,
+      velux: 1.2,
+      doors: 1,
+      conservatory: 5,
+    };
+
+    let selections = {
+      type: '',
+      stories: 1,
+      small: 0,
+      medium: 0,
+      large: 0,
+      velux: 0,
+      doors: 0,
+      conservatory: false,
+      frequency: '',
+    };
+
+    function selectType(type) {
+      selections.type = type;
+      document.getElementById('window-selection').style.display = 'block';
+      if (type !== 'bungalow') {
+        document.getElementById('story-selection').style.display = 'block';
+      }
+    }
+
+    function changeCount(type, delta) {
+      if (selections[type] + delta >= 0) {
+        selections[type] += delta;
+        document.getElementById(type).innerText = selections[type];
+      }
+    }
+
+    function toggleConservatory(value) {
+      selections.conservatory = value;
+    }
+
+    function setFrequency(freq) {
+      selections.frequency = freq;
+    }
+
+    function calculateQuote() {
+      let basePrice = 0;
+      basePrice += selections.small * prices.small;
+      basePrice += selections.medium * prices.medium;
+      basePrice += selections.large * prices.large;
+      basePrice += selections.velux * prices.velux;
+      basePrice += selections.doors * prices.doors;
+      if (selections.conservatory) basePrice += prices.conservatory;
+      const storyCharge = Math.max(0, selections.stories - 1);
+      basePrice += storyCharge;
+
+      let ongoingPrice = basePrice;
+      let firstCleanPrice = ongoingPrice * 1.25;
+
+      let quote = `Property Type: ${selections.type.charAt(0).toUpperCase() + selections.type.slice(1)}<br>
+                   Stories: ${selections.stories}<br>
+                   Small: ${selections.small}, Medium: ${selections.medium}, Large: ${selections.large}, Velux: ${selections.velux}<br>
+                   Doors: ${selections.doors}, Conservatory: ${selections.conservatory ? 'Yes' : 'No'}<br>
+                   Frequency: ${selections.frequency}<br>
+                   <strong>First Clean: £${firstCleanPrice.toFixed(2)}</strong><br>`;
+
+      if (selections.frequency === '4-week') {
+        quote += `<strong>Every 4 Weeks: £${ongoingPrice.toFixed(2)}</strong>`;
+      } else if (selections.frequency === '8-week') {
+        quote += `<strong>Every 8 Weeks: £${ongoingPrice.toFixed(2)}</strong>`;
+      } else {
+        quote += `<strong>One Off: £${ongoingPrice.toFixed(2)}</strong>`;
+      }
+
+      document.getElementById('quoteText').innerHTML = quote;
+      document.getElementById('summary').style.display = 'block';
+    }
+
+    function showContactForm() {
+      document.getElementById('summary').style.display = 'none';
+      document.getElementById('contact').style.display = 'block';
+    }
+
+    function resetForm() {
+      window.location.reload();
+    }
+  </script>
 </body>
 </html>
