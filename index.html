@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -167,25 +168,28 @@
       let ongoingPrice = basePrice;
       let firstCleanPrice = ongoingPrice * 2;
 
+      // Apply new frequency multipliers
+      if (selections.frequency === '8-week') {
+        ongoingPrice *= 4;
+      } else if (selections.frequency === 'one-off') {
+        ongoingPrice *= 5;
+      }
+
       let quote = `Property Type: ${selections.type.charAt(0).toUpperCase() + selections.type.slice(1)}<br>
                    Stories: ${selections.stories}<br>
                    Small: ${selections.small}, Medium: ${selections.medium}, Large: ${selections.large}, Velux: ${selections.velux}<br>
                    Doors: ${selections.doors}, Conservatory: ${selections.conservatory ? 'Yes' : 'No'}<br>
-                   Frequency: ${selections.frequency}<br>
-                   <strong>First Clean: £${firstCleanPrice.toFixed(2)}</strong><br>`;
+                   Frequency: ${selections.frequency}<br>`;
 
-      if (selections.frequency === '4-week') {
-        quote += `<strong>Every 4 Weeks: £${ongoingPrice.toFixed(2.5)}</strong>`;
-      } else if (selections.frequency === '8-week') {
-        quote += `<strong>Every 8 Weeks: £${ongoingPrice.toFixed(5)}</strong>`;
-      } else {
-        quote += `<strong>One Off: £${ongoingPrice.toFixed(2)}</strong>`;
+      // Show first clean price only if not one-off
+      if (selections.frequency !== 'one-off') {
+        quote += `<strong>First Clean: £${firstCleanPrice.toFixed(2)}</strong><br>`;
       }
 
-      if (selections.frequency === '8-week') {
-        quote += `<strong>Every 8 Weeks: £${ongoingPrice.toFixed(4)}</strong>`;
+      if (selections.frequency === '4-week') {
+        quote += `<strong>Every 4 Weeks: £${ongoingPrice.toFixed(2)}</strong>`;
       } else if (selections.frequency === '8-week') {
-        quote += `<strong>Every 8 Weeks: £${ongoingPrice.toFixed(5)}</strong>`;
+        quote += `<strong>Every 8 Weeks: £${ongoingPrice.toFixed(2)}</strong>`;
       } else {
         quote += `<strong>One Off: £${ongoingPrice.toFixed(2)}</strong>`;
       }
