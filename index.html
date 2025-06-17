@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,7 +45,7 @@
     button:hover {
       background-color: #008bb8;
     }
-    select, input[type="text"], input[type="number"] {
+    select, input[type="text"], input[type="email"] {
       padding: 10px;
       border: none;
       border-radius: 5px;
@@ -106,13 +105,16 @@
       <button onclick="resetForm()">Start Again</button>
     </div>
 
-    <div class="section contact-form" id="contact">
+    <form class="section contact-form" id="contact" action="https://formsubmit.co/Pristine-windowcleaners@outlook.com" method="POST">
       <h2>Contact Us</h2>
-      <input type="text" placeholder="Name" />
-      <input type="text" placeholder="Email" />
-      <input type="text" placeholder="Phone Number" />
-      <button>Submit</button>
-    </div>
+      <input type="text" name="name" placeholder="Name" required />
+      <input type="email" name="email" placeholder="Email" required />
+      <input type="text" name="phone" placeholder="Phone Number" required />
+      <textarea name="quoteDetails" id="quoteDetails" style="display:none;"></textarea>
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="table">
+      <button type="submit">Submit</button>
+    </form>
   </div>
 
   <script>
@@ -158,40 +160,30 @@
     }
 
     function calculateQuote() {
-      let basePrice = 0;
-      basePrice += selections.small * prices.small;
-      basePrice += selections.doors * prices.doors;
+      let basePrice = selections.small * prices.small + selections.doors * prices.doors;
       if (selections.conservatory) basePrice += prices.conservatory;
-      const storyCharge = Math.max(0, selections.stories - 1);
-      basePrice += storyCharge;
+      basePrice += Math.max(0, selections.stories - 1);
 
-      let ongoingPrice = basePrice;
-      let firstCleanPrice = ongoingPrice * 2;
-
-      // Apply new frequency multipliers
-      if (selections.frequency === '8-week') {
-        ongoingPrice *= 4;
-      } else if (selections.frequency === 'one-off') {
-        ongoingPrice *= 5;
-      }
-
-      let quote = `Property Type: ${selections.type.charAt(0).toUpperCase() + selections.type.slice(1)}<br>
+      let quote = `Property Type: ${selections.type}<br>
                    Stories: ${selections.stories}<br>
-                   Small: ${selections.small}, Medium: ${selections.medium}, Large: ${selections.large}, Velux: ${selections.velux}<br>
-                   Doors: ${selections.doors}, Conservatory: ${selections.conservatory ? 'Yes' : 'No'}<br>
+                   Windows: ${selections.small}<br>
+                   Doors: ${selections.doors}<br>
+                   Conservatory: ${selections.conservatory ? 'Yes' : 'No'}<br>
                    Frequency: ${selections.frequency}<br>`;
 
-      // Show first clean price only if not one-off
-      if (selections.frequency !== 'one-off') {
-        quote += `<strong>First Clean: £${firstCleanPrice.toFixed(2)}</strong><br>`;
-      }
-
       if (selections.frequency === '4-week') {
-        quote += `<strong>Every 4 Weeks: £${ongoingPrice.toFixed(2)}</strong>`;
+        const ongoing = basePrice;
+        const first = basePrice * 2;
+        quote += `<strong>First Clean: £${first.toFixed(2)}</strong><br>`;
+        quote += `<strong>Every 4 Weeks: £${ongoing.toFixed(2)}</strong>`;
       } else if (selections.frequency === '8-week') {
-        quote += `<strong>Every 8 Weeks: £${ongoingPrice.toFixed(2)}</strong>`;
-      } else {
-        quote += `<strong>One Off: £${ongoingPrice.toFixed(2)}</strong>`;
+        const ongoing = basePrice * 4;
+        const first = ongoing + 10;
+        quote += `<strong>First Clean: £${first.toFixed(2)}</strong><br>`;
+        quote += `<strong>Every 8 Weeks: £${ongoing.toFixed(2)}</strong>`;
+      } else if (selections.frequency === 'one-off') {
+        const price = basePrice * 2.9;
+        quote += `<strong>One Off Clean: £${price.toFixed(2)}</strong>`;
       }
 
       document.getElementById('quoteText').innerHTML = quote;
@@ -201,6 +193,9 @@
     function showContactForm() {
       document.getElementById('summary').style.display = 'none';
       document.getElementById('contact').style.display = 'block';
+
+      const quote = document.getElementById('quoteText').innerHTML;
+      document.getElementById('quoteDetails').value = quote.replace(/<br>/g, '\n').replace(/<[^>]*>/g, '');
     }
 
     function resetForm() {
