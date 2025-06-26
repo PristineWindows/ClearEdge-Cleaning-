@@ -177,12 +177,12 @@
         quote += `<strong>First Clean: £${first.toFixed(2)}</strong><br>`;
         quote += `<strong>Every 4 Weeks: £${ongoing.toFixed(2)}</strong>`;
       } else if (selections.frequency === '8-week') {
-        const ongoing = basePrice * 4;
+        const ongoing = basePrice * 2.5;
         const first = ongoing + 10;
         quote += `<strong>First Clean: £${first.toFixed(2)}</strong><br>`;
         quote += `<strong>Every 8 Weeks: £${ongoing.toFixed(2)}</strong>`;
       } else if (selections.frequency === 'one-off') {
-        const price = basePrice * 2.9;
+        const price = basePrice * 4;
         quote += `<strong>One Off Clean: £${price.toFixed(2)}</strong>`;
       }
 
