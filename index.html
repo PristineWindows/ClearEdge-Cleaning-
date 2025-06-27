@@ -120,7 +120,9 @@
 
   <script>
     const prices = {
-      small: 1.2, 
+      small: 1.2,
+      medium: 2,
+      large: 2.5
       doors: 1,
       conservatory: 6,
     };
@@ -161,13 +163,16 @@
     }
 
     function calculateQuote() {
-      let basePrice = selections.small * prices.small + selections.doors * prices.doors;
+      let basePrice = selections.small * prices small + selections.medium * prices medium + selections.large * prices large+ selections.doors * prices.doors;
       if (selections.conservatory) basePrice += prices.conservatory;
       basePrice += Math.max(0, selections.stories - 1);
 
       let quote = `Property Type: ${selections.type}<br>
                    Stories: ${selections.stories}<br>
-                   Windows: ${selections.small}<br> ${selections.medium}<br> ${selections.large}<br>
+                   Windows: 
+                   Small: ${selections.small}<br> 
+                   Medium: ${selections.medium}<br> 
+                   Large: ${selections.large}<br>
                    Conservatory: ${selections.conservatory ? 'Yes' : 'No'}<br>
                    Frequency: ${selections.frequency}<br>`;
 
