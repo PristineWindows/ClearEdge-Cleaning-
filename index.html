@@ -87,7 +87,7 @@
       </div>
       <h2>Windows</h2>
       <div class="counter"> Small Windows: <button onclick="changeCount('small', -1)">-</button><span id="small">0</span><button onclick="changeCount('small', 1)">+</button></div>
-      <div class="counter"> Medium Windows: <button onclick="changeCount('medium ', -1)">-</button><span id="medium">0</span><button onclick="changeCount('medium', 1)">+</button></div>
+      <div class="counter"> Medium Windows: <button onclick="changeCount('medium', -1)">-</button><span id="medium">0</span><button onclick="changeCount('medium', 1)">+</button></div>
     <div class="counter">Large/Bay Windows: <button onclick="changeCount('large', -1)">-</button><span id="large">0</span><button onclick="changeCount('large', 1)">+</button></div>
       <h2>Conservatory Cleaning?</h2>
       <button onclick="toggleConservatory(true)">Yes</button>
@@ -148,11 +148,17 @@
     }
 
     function changeCount(type, delta) {
-      if (selections[type] + delta >= 0) {
-        selections[type] += delta;
-        document.getElementById(type).innerText = selections[type];
-      }
-    }
+  const newValue = selections[type] + delta;
+
+  if (type === 'stories') {
+    if (newValue < 1 || newValue > 2) return; // limit stories between 1 and 2
+  } else {
+    if (newValue < 0) return; // prevent negative values for other types
+  }
+
+  selections[type] = newValue;
+  document.getElementById(type).innerText = newValue;
+}
 
     function toggleConservatory(value) {
       selections.conservatory = value;
