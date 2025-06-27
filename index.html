@@ -86,7 +86,9 @@
         </div>
       </div>
       <h2>Windows</h2>
-      <div class="counter">Windows: <button onclick="changeCount('small', -1)">-</button><span id="small">0</span><button onclick="changeCount('small', 1)">+</button></div>
+      <div class="counter"> Small Windows: <button onclick="changeCount('small', -1)">-</button><span id="small">0</span><button onclick="changeCount('small', 1)">+</button></div>
+      <div class="counter"> Medium Windows: <button onclick="changeCount('medium ', -2)">-</button><span id="small">0</span><button onclick="changeCount('small', 1)">+</button></div>
+    <div class="counter">Large/Bay Windows: <button onclick="changeCount('large', -2.5)">-</button><span id="small">0</span><button onclick="changeCount('small', 1)">+</button></div>
       <h2>Conservatory Cleaning?</h2>
       <button onclick="toggleConservatory(true)">Yes</button>
       <button onclick="toggleConservatory(false)">No</button>
@@ -165,7 +167,7 @@
 
       let quote = `Property Type: ${selections.type}<br>
                    Stories: ${selections.stories}<br>
-                   Windows: ${selections.small}<br>
+                   Windows: ${selections.small}<br> ${selections.medium}<br> ${selections.large}<br>
                    Conservatory: ${selections.conservatory ? 'Yes' : 'No'}<br>
                    Frequency: ${selections.frequency}<br>`;
 
