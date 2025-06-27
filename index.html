@@ -171,11 +171,11 @@
 
       if (selections.frequency === '4-week') {
         const ongoing = basePrice;
-        const first = basePrice * 2;
+        const first = basePrice * 1.5;
         quote += `<strong>First Clean: £${first.toFixed(2)}</strong><br>`;
         quote += `<strong>Every 4 Weeks: £${ongoing.toFixed(2)}</strong>`;
       } else if (selections.frequency === '8-week') {
-        const ongoing = basePrice * 2.5;
+        const ongoing = basePrice * 1.8;
         const first = ongoing + 10;
         quote += `<strong>First Clean: £${first.toFixed(2)}</strong><br>`;
         quote += `<strong>Every 8 Weeks: £${ongoing.toFixed(2)}</strong>`;
