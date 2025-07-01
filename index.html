@@ -61,6 +61,28 @@
       border-radius: 8px;
       margin-top: 20px;
     }
+    .property-button-row {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 10px;
+    }
+
+    .property-button-row button {
+      padding: 10px 20px;
+      min-width: 130px;
+      font-size: 1rem;
+      border-radius: 8px;
+      background-color: #00b5e2;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .property-button-row button:hover {
+      background-color: #008bb8;
+    }
   </style>
 </head>
 <body>
@@ -71,11 +93,11 @@
 
     <div class="section" id="start">
       <h2>Select Property Type</h2>
-      <div class="property-buttons">
+      <div class="property-button-row">
         <button onclick="selectType('bungalow')">Bungalow</button>
         <button onclick="selectType('semi')">Semi-Detached</button>
         <button onclick="selectType('terraced')">Terraced</button>
-      <div class="property-buttons">
+      <div class="property-button-row">
         <button onclick="selectType('detached')">Detached</button>
         <button onclick="selectType('flat')">Flat</button>
       </div>
