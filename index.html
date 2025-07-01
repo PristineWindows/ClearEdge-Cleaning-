@@ -67,21 +67,29 @@
       gap: 15px;
       margin-bottom: 10px;
     }
-
-    .property-button-row button {
-      padding: 10px 20px;
-      min-width: 130px;
+    .property-type-section {
+      text-align: center;
+    }
+    .property-button-grid {
+      display: grid
+      grid-template-columns: repeat(2, auto);
+      gap: 12px;
+      justify-content: center;
+      padding-top: 10px;
+    }
+    .property-button-grid button {
+      padding: 10px 16px;
       font-size: 1rem;
-      border-radius: 8px;
       background-color: #00b5e2;
       color: white;
       border: none;
+      border-radius: 6px;
       cursor: pointer;
       transition: background-color 0.2s ease;
     }
-
-    .property-button-row button:hover {
+    .property-button-grid button:hover {
       background-color: #008bb8;
+    };
     }
   </style>
 </head>
@@ -91,16 +99,15 @@
     <h1>ClearEdge Cleaning</h1>
     <h2>Traditional Window Cleaning</h2>
 
-    <div class="section" id="start">
-      <h2>Select Property Type</h2>
-      <div class="property-button-row">
-        <button onclick="selectType('bungalow')">Bungalow</button>
-        <button onclick="selectType('semi')">Semi-Detached</button>
-        <button onclick="selectType('terraced')">Terraced</button>
-      <div class="property-button-row">
-        <button onclick="selectType('detached')">Detached</button>
-        <button onclick="selectType('flat')">Flat</button>
-      </div>
+    <div class="property-type-section">
+  <h2>Select Property Type</h2>
+  <div class="property-button-grid">
+    <button onclick="selectType('bungalow')">Bungalow</button>
+    <button onclick="selectType('semi')">Semi-Detached</button>
+    <button onclick="selectType('terraced')">Terraced</button>
+    <button onclick="selectType('detached')">Detached</button>
+    <button onclick="selectType('flat')">Flat</button>
+  </div>
     </div>
 
     <div class="section" id="window-selection" style="display:none;">
